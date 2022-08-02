@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+    <head>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel='stylesheet' type="text/css" href="{% static 'userForms/register.css' %}"/>
+
+        <title> 
+            {% if title %}
+                {{ title }}
+            {% else %}
+                User App
+            {% endif %}
+        </title>
+    </head>
+
+    <body>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class='alert alert-{{ message.tags }}'>
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+
+    {% load crispy_forms_tags %}
+
+    <div class='container content-section'>
+
+        <form action='' method='POST' >
+
+            {% csrf_token %}
+
+            <fieldset class='form-group' style="margin-top: 60px">
+                <legend class='border-bottom mb4'> <h2> Login </h2> </legend>
+            </fieldset>
+
+            {{ form|crispy }}
+
+            <div class='form-group'>
+                <button class='btn btn-outline-info' type='submit' > Login </button>
+            </div>
+
+        </form>
+
+        <div class='sign-in border-top pt-3'>
+            <span class='text-muted'> Need an account? </span> <a href={% url 'register' %} > Sign Up Now </a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+ 
+    </body>
+
+</html>
